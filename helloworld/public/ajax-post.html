@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		用户名：<input id="input"/>
+	</body>
+	<script src="javascripts/jquery-3.2.1.min.js"></script>
+	<script>
+		input.onblur = function(){
+			let ajax = new XMLHttpRequest();
+			ajax.open('post','/post')
+			ajax.setRequestHeader('Content-type','application/x-www-form-urlencoded')
+			ajax.send('user=' + input.value)
+			ajax.onload = function(){
+				console.log(ajax.responseText)
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		用户名：<input name="user" id="user"/>
+		密码：<input name="pass" type="password"/>
+		<button id="btn">提交</button>
+	</body>
+	<script src="javascripts/jquery-3.2.1.min.js"></script>
+	<script>
+		user.onblur = function(){
+			$.ajax({
+				url:'/get',
+				data:{
+					user:user.value
+				},
+				success(data){
+					let d = JSON.parse(data);
+					if(d.code === 0){
+						user.style.color ='pink'
+					}else{
+						user.style.color = 'red'
+					}
+				}
+			})
+		}
+	</script>
+</html>
