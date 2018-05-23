@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="t"/>
+	</body>
+	<script>
+		t.onblur = function(){
+			ajax({
+				url:'/post',
+				data:{
+					user:t.value
+				},
+				methods:'post',
+				success(json){
+					console.log(jsons)
+				}
+			})
+		}
+		
+		function ajax(json){
+			var obj{
+				url:'',
+				data:{},
+				methods:'/get',
+				success:function(){},
+				fail:function(){}
+			}
+		}
+		
+		for(var attr in json){
+			obj[attr] = json[attr]
+		}
+		
+		
+	</script>
+</html>
