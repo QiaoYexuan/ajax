@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn">生成数据</button>
+		<ul id="ul"></ul>
+		<script>
+			var html = '';
+			btn.onclick = function(){
+				let ajax = new XMLHttpRequest();
+				ajax.open('get','data.xml') ;
+				ajax.send();
+				ajax.onload = function(){
+					var xml = ajax.responseXML;
+					var person = xml.getElementsByTagName('person');
+					for(let i=0;i<person.length;i++){
+						var name = person[i].getElementsByTagName('name')[0]
+						var age = person[i].getElementsByTagName('age')[0]
+						var sex = person[i].getElementsByTagName('sex')[0]
+						var info = person[i].getElementsByTagName('info')[0]
+						if(isxx('msie 9')){
+							fn(name,age,sex,info,'text')
+						}else if(isxx('msie 10') || isxx('rv:11')){
+							fn(name,age,sex,info,'textContent')
+						}else{
+							fn(name,age,sex,info,'innerHTML')
+						}
+					}
+					ul.innerHTML = html
+				}
+			}
+			function fn(name,age,sex,info,inner){
+				html += `<li>我的名字叫` + name[inner] + ',';
+				html += `年龄` + age[inner] + ',';
+				html += `性别` + sex[inner] + ',';
+				html += `我的信息` + info[inner] + `.</li>`;
+			}
+			function isxx(xx){
+				var nav = window.navigator.userAgent.toLocaleLowerCase();
+				if(nav.indexOf(xx) != -1){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		</script>
+	</body>
+</html>
